@@ -1,0 +1,40 @@
+[project]
+name = "leaknet"
+version = "0.1.0"
+description = "Exploration: locating gas leaks from a sparse sensor network with attention models, on synthetic plume data."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "torch>=2.5",
+    "numpy>=2.0",
+    "scipy>=1.14",
+    "h5py>=3.12",
+    "plotly>=5.24",
+    "matplotlib>=3.9",
+    "tqdm>=4.66",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab>=4.2",
+    "ipykernel>=6.29",
+    "ipywidgets>=8.1",
+    "anywidget>=0.9",
+    "nbconvert>=7.16",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/leaknet"]
+
+# CUDA build of torch on Windows / Linux, default (CPU / MPS) wheel on macOS
+[tool.uv.sources]
+torch = [{ index = "pytorch-cu134", marker = "sys_platform == 'win32' or sys_platform == 'linux'" }]
+
+[[tool.uv.index]]
+name = "pytorch-cu134"
+url = "https://download.pytorch.org/whl/cu134"
+explicit = true

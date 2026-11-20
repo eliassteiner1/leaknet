@@ -1,2 +1,12 @@
-/scene_collections
-/interesting_papers
+# generated data (see scripts/generate_scenes.py)
+/data/*
+!/data/.gitkeep
+
+# python / uv
+.venv/
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
+
+# private reading copies, not part of the repo
+/scratch/
